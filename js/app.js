@@ -30,8 +30,15 @@
 
     function createTodoItem(title) {
 
-        const checkbox = createElement('input', {type: 'checkbox', className: 'checkbox'});
+        const checkbox = createElement('input', {type: 'checkbox', className: 'checkbox', id: 'cbx'});
 
+        const labelForCheckbox = createElement('label',{for: 'cbx', className: 'check'});
+        labelForCheckbox.innerHTML =
+            `  <svg width="18px" height="18px" viewBox="0 0 18 18">
+                            <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                            <polyline points="1 9 7 14 15 4"></polyline>
+               </svg>`;
+        console.log(labelForCheckbox);
         const label = createElement('label', {innerText: title, className: 'title'});
 
         const editInput = createElement('input', {type: 'text', className: 'textfield'});
@@ -40,7 +47,7 @@
 
         const deleteButton = createElement('button', {innerText: 'Удалить', className: 'delete'});
 
-        const listItem = createElement('li', {className: 'todo-item'}, checkbox, label, editInput, editButton, deleteButton);
+        const listItem = createElement('li', {className: 'todo-item'}, checkbox, labelForCheckbox, label, editInput, editButton, deleteButton);
 
         addInput.value = '';
 
@@ -91,6 +98,8 @@
     }
 
     function hideElement(listItem) {
+        console.log(`lis is: ${listItem}`);
+        try {
             if (listItem.classList.contains('completed')) {
                 setTimeout(
                     () => {
@@ -103,14 +112,20 @@
                     2000
                 );
             }
-    }
+
+        } catch (e) {
+            console.log(`Error is: ${e}`);
+        }
+}
+
     function toHide() {
         setTimeout(
             () => {
                 document.querySelector('.toHide').remove()
-            },2000
+            }, 2000
         );
     }
+
     function deleteTodoButton() {
         const listItem = this.parentNode;
         listItem.remove();
