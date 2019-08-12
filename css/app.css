@@ -149,8 +149,10 @@
     }
 
     main {
+        display: flex;
+        flex-direction: column;
         background: #fff;
-        width: 700px;
+        max-width: 700px;
         margin: 70px auto;
         border-radius: 2px;
         overflow: hidden;
