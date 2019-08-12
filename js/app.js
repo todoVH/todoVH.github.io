@@ -67,12 +67,23 @@
     }
 
     function toggleTodoItem() {
+        console.log('done');
+
         const listItem = this.parentNode;
-        const checkbox = listItem.querySelector('.checkbox');
+        console.log(listItem);
+        const checkbox = listItem.querySelector('#cbx');
+        if(this.className === 'checkbox') {
+            console.log(checkbox.checked);
+            listItem.classList.toggle('completed');
+            hideElement(listItem);
+            return;
+        }
         checkbox.checked = !checkbox.checked;
+        console.log(checkbox.checked);
         listItem.classList.toggle('completed');
         hideElement(listItem);
     }
+
 
     function editTodoButton() {
         const listItem = this.parentNode;
@@ -113,7 +124,7 @@
                             );
                         }
                     },
-                    2000
+                    1000
                 );
             }
 }
@@ -135,9 +146,9 @@
         const title = todoItem.querySelector('.title');
         const editButton = todoItem.querySelector('button.edit');
         const deleteButton = todoItem.querySelector('button.delete');
-
-        title.addEventListener('click', toggleTodoItem);
-        title.addEventListener('click', hideElement);
+        const checkbox = todoItem.querySelector('.checkbox');
+        //title.addEventListener('click', toggleTodoItem);
+        checkbox.addEventListener('change', toggleTodoItem);
 
         editButton.addEventListener('click', editTodoButton);
         deleteButton.addEventListener('click', deleteTodoButton);
