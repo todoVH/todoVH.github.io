@@ -105,9 +105,12 @@
                 setTimeout(
                     () => {
                         if (listItem.classList.contains('completed')) {
-                            listItem.remove();
-                            console.log(`element was deleted`);
-                            console.log('Вадос лох))))))))))))))))))))');
+                            listItem.className =`${listItem.className} slideOutRight animated`;
+                            setTimeout(
+                                ( ) => {
+                              listItem.remove();
+                                }, 1000
+                            );
                         }
                     },
                     2000
