@@ -109,7 +109,7 @@
                             setTimeout(
                                 ( ) => {
                               listItem.remove();
-                                }, 1000
+                                }, 700
                             );
                         }
                     },
