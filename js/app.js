@@ -32,7 +32,7 @@
 
         const checkbox = createElement('input', {type: 'checkbox', className: 'checkbox', id: 'cbx'});
 
-        const labelForCheckbox = createElement('label',{for: 'cbx', className: 'check'});
+        const labelForCheckbox = createElement('label',{ className: 'check' });
         labelForCheckbox.innerHTML =
             `  <svg width="18px" height="18px" viewBox="0 0 18 18">
                             <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
@@ -66,18 +66,10 @@
         todoList.appendChild(todoItem);
     }
 
-    function toggleTodoItem() {
-        console.log('done');
-
-        const listItem = this.parentNode;
+    function toggleTodoItem(todoItem) {
+        const listItem = todoItem;
         console.log(listItem);
         const checkbox = listItem.querySelector('#cbx');
-        if(this.className === 'checkbox') {
-            console.log(checkbox.checked);
-            listItem.classList.toggle('completed');
-            hideElement(listItem);
-            return;
-        }
         checkbox.checked = !checkbox.checked;
         console.log(checkbox.checked);
         listItem.classList.toggle('completed');
@@ -146,9 +138,13 @@
         const title = todoItem.querySelector('.title');
         const editButton = todoItem.querySelector('button.edit');
         const deleteButton = todoItem.querySelector('button.delete');
-        const checkbox = todoItem.querySelector('.checkbox');
-        //title.addEventListener('click', toggleTodoItem);
-        checkbox.addEventListener('change', toggleTodoItem);
+        const checkbox = todoItem.querySelector('svg');
+        title.addEventListener('click', () => {
+            toggleTodoItem(todoItem);
+        });
+        checkbox.addEventListener('click', () => {
+            toggleTodoItem(todoItem);
+        });
 
         editButton.addEventListener('click', editTodoButton);
         deleteButton.addEventListener('click', deleteTodoButton);
